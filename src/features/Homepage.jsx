@@ -6,15 +6,14 @@ import { usePage } from '../ContextAPI/Context'
 function Homepage() {
 const navigate = useNavigate()
 
-const {type,setType} = usePage()
+const {setType} = usePage()
 
   return (
     <div className='bg-gradient-to-b from-orange-200 to-red-300 w-full h-screen'>
          <header className="bg-[#2e2e2e] text-white">
             <div className="flex items-center justify-between px-4 py-2">
               <div className="flex items-center space-x-4">
-                <img src={logo} alt="Amazon" className="rounded-xl h-12 w-35 hover:cursor-pointer" />
-                <span className='text-xs pl-3'><strong>"For & by VITIANS"</strong></span>
+                <img src={logo} className="rounded-xl h-12 w-35 hover:cursor-pointer" onClick={()=>navigate('/')}/>
               </div>
                 <div className="flex w-[50%] mx-auto bg-white rounded-sm font-bold overflow-hidden shadow-sm">
                     <input
@@ -41,12 +40,14 @@ const {type,setType} = usePage()
                 </div>
               <div className="flex items-center space-x-4 text-sm">
                 <div className='pr-5 pl-3'>
-                  <span><strong className='mr-15 hover: cursor-pointer'>SignIn</strong></span>
-              <span ><strong className='mr-15 hover:cursor-pointer'>Sell</strong></span>
+                  <span><strong className='mr-15 hover: cursor-pointer' onClick={
+                    ()=>navigate('/Signin')
+                  }>SignIn</strong></span>
+              <span ><strong className='mr-15 hover:cursor-pointer' onClick={()=>navigate('/Sell')}>Sell</strong></span>
 
                 </div>
                 <div className='pr-4'>
-                  <img src="https://img.icons8.com/ios-filled/24/ffffff/shopping-cart.png" className="h-5 hover:cursor-pointer" />
+                  <img src="https://img.icons8.com/ios-filled/24/ffffff/shopping-cart.png" className="h-5 hover:cursor-pointer" onClick={()=>navigate('/Cart')} />
                 </div>
               </div>
             </div>
@@ -54,11 +55,13 @@ const {type,setType} = usePage()
         
           <section className=" text-center py-8">
             <h2 className="text-4xl mt-7 font-semibold">Shop on College essentials in Budget Friendly price!</h2>
-            <img className='from-blue-100 to-pink-100 h-27'/>
+            <br/>
+            <h3 className='text-3xl pl-3'><strong>for the VITIAN's by the VITIAN's</strong></h3>
+            <img className='from-blue-100 to-pink-100 h-12'/>
           </section>
         <div className="from-blue-100 to-pink-100 ">
           <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
-            <div className="bg-white p-4 rounded border hover:cursor-pointer"
+            <div className="bg-white p-4 rounded border transform hover:cursor-pointer hover:scale-110 transition duration-300"
             onClick={()=>{
               setType('Stationary')
               navigate('/Stationary')
@@ -67,7 +70,7 @@ const {type,setType} = usePage()
               <img src="https://thumbnails.production.thenounproject.com/jz2Frjk9Y4MwfQ2EyerjXLW1Y_s=/fit-in/1000x1000/photos.production.thenounproject.com/photos/A2D26D74-04C5-45E2-B645-A17C1547B151.jpg" className='rounded-sm'/>
             </div>
         
-                <div className="bg-white p-4 rounded border text-center hover:cursor-pointer"
+                <div className="bg-white p-4 rounded border text-center transform hover:cursor-pointer hover:scale-110 transition duration-300"
                 onClick={()=>{
                   setType('pdf')
                   navigate('/pdf')
@@ -77,7 +80,7 @@ const {type,setType} = usePage()
                 </div>
 
         
-            <div className="bg-white p-4 rounded border text-center hover:cursor-pointer"
+            <div className="bg-white p-4 rounded border transform text-center hover:cursor-pointer hover:scale-110 transition duration-300"
              onClick={()=>{
               setType('aem')
               navigate('/aem')
@@ -86,7 +89,7 @@ const {type,setType} = usePage()
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgezZSILrxgwPxE_BMmW0bJKoc-abq8XjVcw&s" className='h-40 rounded-sm'/>
             </div>
         
-            <div className="bg-white p-4 rounded border text-center hover:cursor-pointer"
+            <div className="bg-white p-4 rounded border transform text-center hover:cursor-pointer hover:scale-110 transition duration-300"
             onClick={()=>{
               setType('notes')
               navigate('/notes')
