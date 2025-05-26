@@ -34,7 +34,7 @@ function Items() {
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
       {!bool?
       filteredItem?.map((value,index)=>(
-        <div className="bg-white rounded-lg shadow hover:shadow-lg border cursor-pointer p-4" onClick={()=>{
+        <div className="bg-white rounded-lg transform shadow hover:shadow-lg hover:scale-105 transition duration-300 border cursor-pointer p-4" onClick={()=>{
           setSubj({
             description:value.data.Description,
             category:value.data.category,
@@ -60,7 +60,7 @@ function Items() {
       ))
       :
         find && find.map((value,index)=>(
-          <div className="bg-white rounded-lg shadow hover:shadow-lg border cursor-pointer p-4" onClick={()=>{
+          <div className="bg-white rounded-lg transform shadow hover:shadow-lg hover:scale-105 transition duration-300 border cursor-pointer p-4" onClick={()=>{
           setSubj({
             description:value.data.Description,
             category:value.data.category,
