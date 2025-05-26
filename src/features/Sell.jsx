@@ -12,7 +12,6 @@ function Sell() {
     { isActive: false, domain: 'Electronics & AEM stuff' },
     { isActive: false, domain: 'Notes & Handwritten material' }
   ]
-
   const [description, setDescription] = useState('')
   const [imgurl, setImage] = useState('')
   const [price, setPrice] = useState('')

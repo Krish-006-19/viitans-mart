@@ -6,6 +6,7 @@ export function PageProvider({children}){
     const [type, setType] = useState('')
     const [search, setSearch] = useState('')
     const [bool, setBool] = useState(false)
+    const [subj, setSubj] = useState('')
     return(
         <PageContext.Provider 
         value={
@@ -15,7 +16,9 @@ export function PageProvider({children}){
                 search,
                 setSearch,
                 bool,
-                setBool
+                setBool,
+                subj,
+                setSubj
             }
         }>
             {children}
