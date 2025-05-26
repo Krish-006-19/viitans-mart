@@ -2,6 +2,7 @@ import logo from '../photos/logo.png'
 import pdf from '../photos/pdf.jpeg'
 import { useNavigate } from 'react-router-dom'
 import { usePage } from '../ContextAPI/Context'
+import SearchIcon from '@mui/icons-material/Search';
 
 function Homepage() {
 const navigate = useNavigate()
@@ -22,20 +23,7 @@ const {setType} = usePage()
                         className="w-full px-4 py-2 text-gray-700 focus:outline-none"
                     />
                     <button className="bg-yellow-400 h-10 pl-2 text-white hover:cursor-pointer">
-                        <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-7 w-7 pr-2"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z"
-                        />
-                        </svg>
+                        <SearchIcon/>
                     </button>
                 </div>
               <div className="flex items-center space-x-4 text-sm">
@@ -63,7 +51,7 @@ const {setType} = usePage()
           <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
             <div className="bg-white p-4 rounded border transform hover:cursor-pointer hover:scale-110 transition duration-300"
             onClick={()=>{
-              setType('Stationary')
+              setType('Stationary & Notebooks')
               navigate('/Stationary')
               }}>
               <h3 className="font-semibold mb-2 text-center "><strong>Stationary & Notebooks</strong></h3>
@@ -72,7 +60,7 @@ const {setType} = usePage()
         
                 <div className="bg-white p-4 rounded border text-center transform hover:cursor-pointer hover:scale-110 transition duration-300"
                 onClick={()=>{
-                  setType('pdf')
+                  setType('PDF Files')
                   navigate('/pdf')
                   }}>
                     <h3 className="font-semibold mb-2"><strong>PDF Files</strong></h3>
@@ -82,7 +70,7 @@ const {setType} = usePage()
         
             <div className="bg-white p-4 rounded border transform text-center hover:cursor-pointer hover:scale-110 transition duration-300"
              onClick={()=>{
-              setType('aem')
+              setType('Electronics & AEM stuff')
               navigate('/aem')
              }}>
               <h3 className="font-semibold mb-2"><strong>Electronics & AEM stuff</strong></h3>
@@ -91,7 +79,7 @@ const {setType} = usePage()
         
             <div className="bg-white p-4 rounded border transform text-center hover:cursor-pointer hover:scale-110 transition duration-300"
             onClick={()=>{
-              setType('notes')
+              setType('Notes & Handwritten material')
               navigate('/notes')
             }}
             >
