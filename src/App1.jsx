@@ -11,6 +11,7 @@ function App1() {
     <BrowserRouter>
     <Routes>
         <Route path='/' element={<Homepage/>}/>
+        <Route path='/Search' element={<Items/>}/>
         <Route path='/Stationary' element={<Items/>}/>
         <Route path='/pdf' element={<Items/>}/>
         <Route path='/aem' element={<Items/>}/>

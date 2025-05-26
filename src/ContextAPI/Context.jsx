@@ -4,12 +4,18 @@ const PageContext = createContext(null)
 
 export function PageProvider({children}){
     const [type, setType] = useState('')
+    const [search, setSearch] = useState('')
+    const [bool, setBool] = useState(false)
     return(
         <PageContext.Provider 
         value={
             {
                 type,
-                setType
+                setType,
+                search,
+                setSearch,
+                bool,
+                setBool
             }
         }>
             {children}

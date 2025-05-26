@@ -7,7 +7,7 @@ import SearchIcon from '@mui/icons-material/Search';
 function Homepage() {
 const navigate = useNavigate()
 
-const {setType} = usePage()
+const {setType, setSearch, setBool} = usePage()
 
   return (
     <div className='bg-gradient-to-b from-orange-200 to-red-300 w-full h-screen'>
@@ -20,9 +20,14 @@ const {setType} = usePage()
                     <input
                         type="text"
                         placeholder="Search"
+                        onChange={(e)=>setSearch(e.target.value)}
                         className="w-full px-4 py-2 text-gray-700 focus:outline-none"
                     />
-                    <button className="bg-yellow-400 h-10 pl-2 text-white hover:cursor-pointer">
+                    <button className="bg-yellow-400 h-10 pl-2 text-white hover:cursor-pointer"
+                    onClick={()=>{
+                      setBool(true)
+                      navigate('/Search')
+                      }}>
                         <SearchIcon/>
                     </button>
                 </div>
@@ -52,6 +57,7 @@ const {setType} = usePage()
             <div className="bg-white p-4 rounded border transform hover:cursor-pointer hover:scale-110 transition duration-300"
             onClick={()=>{
               setType('Stationary & Notebooks')
+              setBool(false)
               navigate('/Stationary')
               }}>
               <h3 className="font-semibold mb-2 text-center "><strong>Stationary & Notebooks</strong></h3>
@@ -61,6 +67,7 @@ const {setType} = usePage()
                 <div className="bg-white p-4 rounded border text-center transform hover:cursor-pointer hover:scale-110 transition duration-300"
                 onClick={()=>{
                   setType('PDF Files')
+                  setBool(false)
                   navigate('/pdf')
                   }}>
                     <h3 className="font-semibold mb-2"><strong>PDF Files</strong></h3>
@@ -71,6 +78,7 @@ const {setType} = usePage()
             <div className="bg-white p-4 rounded border transform text-center hover:cursor-pointer hover:scale-110 transition duration-300"
              onClick={()=>{
               setType('Electronics & AEM stuff')
+              setBool(false)
               navigate('/aem')
              }}>
               <h3 className="font-semibold mb-2"><strong>Electronics & AEM stuff</strong></h3>
@@ -80,6 +88,7 @@ const {setType} = usePage()
             <div className="bg-white p-4 rounded border transform text-center hover:cursor-pointer hover:scale-110 transition duration-300"
             onClick={()=>{
               setType('Notes & Handwritten material')
+              setBool(false)
               navigate('/notes')
             }}
             >
