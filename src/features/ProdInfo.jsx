@@ -1,9 +1,15 @@
+import { useSelector } from "react-redux"
 import { usePage } from "../ContextAPI/Context"
+import { useNavigate } from "react-router-dom"
+import Signin from './Signin'
 
 function ProdInfo() {
-  const {subj} = usePage()
+  const {subj, setCart} = usePage()
+  const user = useSelector(state=>state.user.user)
+  const navigate = useNavigate()
   return (
     <div className=" w-full flex justify-evenly items-center h-screen bg-gradient-to-b from-orange-200 to-red-300 ">
+      {user?
 <div className="flex flex-col lg:flex-row p-6 gap-8 max-w-7xl mx-auto border rounded-2xl bg-white">
   <div className="flex flex-col lg:flex-row gap-4">
   
@@ -30,11 +36,15 @@ function ProdInfo() {
     <div className="text-sm text-gray-600">Sold by <strong>Clicktech Retail Pvt Ltd</strong></div>
     <br/>
     <br/>
-    <button className="w-full bg-yellow-400 hover:bg-yellow-500 cursor-pointer text-black font-semibold py-2 rounded">Add to Cart</button>
+    <button className="w-full bg-yellow-400 hover:bg-yellow-500 cursor-pointer text-black font-semibold py-2 rounded" 
+    onClick={()=>{
+      setCart((prev)=>[...prev,{...subj}])
+    }}>Add to Cart</button>
     <button className="w-full bg-yellow-500 hover:bg-yellow-600 cursor-pointer text-black font-semibold py-2 rounded">Ratings</button>
   </div>
-  </div>
-
+  </div>:
+<Signin/>
+}
     </div>
   )
 }

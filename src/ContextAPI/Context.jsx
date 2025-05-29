@@ -7,6 +7,7 @@ export function PageProvider({children}){
     const [search, setSearch] = useState('')
     const [bool, setBool] = useState(false)
     const [subj, setSubj] = useState('')
+    const [cart, setCart] = useState([])
     return(
         <PageContext.Provider 
         value={
@@ -18,7 +19,9 @@ export function PageProvider({children}){
                 bool,
                 setBool,
                 subj,
-                setSubj
+                setSubj,
+                cart, 
+                setCart
             }
         }>
             {children}

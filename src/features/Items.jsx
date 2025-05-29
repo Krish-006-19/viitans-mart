@@ -3,6 +3,7 @@ import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'
 import { db } from '../firebase/firebase'
 import { useNavigate } from 'react-router-dom'
 import { usePage } from '../ContextAPI/Context'
+import { nanoid } from 'nanoid'
 
 function Items() {
   const navigate = useNavigate()
@@ -23,7 +24,7 @@ function Items() {
 
     const [item, setItem] = useState([])
     const filteredItem = item.filter((value)=> type === value.data.category )
-
+    let i = 0
     const find = item.filter((value)=>value.data.Description.toLowerCase().includes(search))
 
   return (
@@ -39,7 +40,8 @@ function Items() {
             description:value.data.Description,
             category:value.data.category,
             price:value.data.price,
-            imgurl:value.data.imgurl
+            imgurl:value.data.imgurl,
+            id: `${value.data.description}+${value.data.imgurl}+${i++}`
           })
           navigate('/info')
           }} key={value+index}>
@@ -54,7 +56,7 @@ function Items() {
           <span className="text-green-600 font-bold">&#8377;{value.data.price}</span>
         </div>
         <button className="mt-2 w-full bg-yellow-400 hover:bg-yellow-300 text-black font-semibold py-2 rounded">
-          Add to cart
+          Info
         </button>
       </div>
       ))

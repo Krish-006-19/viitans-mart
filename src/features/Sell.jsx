@@ -3,9 +3,12 @@ import { db } from '../firebase/firebase'
 import { addDoc, collection } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom'
 import { nanoid } from '@reduxjs/toolkit'
+import { useSelector } from 'react-redux'
+import Signin from './Signin'
 
 function Sell() {
   const navigate = useNavigate()
+  const user = useSelector(state=>state.user.user)
   const arr = [
     { isActive: false, domain: 'Stationary & Notebooks' },
     { isActive: false, domain: 'PDF Files' },
@@ -42,6 +45,7 @@ function Sell() {
 
   return (
     <div className='bg-gradient-to-b from-orange-200 to-red-300 h-screen w-full flex justify-center items-center'>
+      {user?
       <div className="bg-white px-8 py-4 rounded-xl shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Sell Your Item</h2>
 
@@ -114,7 +118,9 @@ function Sell() {
             Submit
           </button>
         </form>
-      </div>
+      </div>:
+      <Signin/>
+}
     </div>
   )
 }
