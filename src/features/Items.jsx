@@ -3,12 +3,15 @@ import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'
 import { db } from '../firebase/firebase'
 import { useNavigate } from 'react-router-dom'
 import { usePage } from '../ContextAPI/Context'
-import { nanoid } from 'nanoid'
+import { useSelector } from 'react-redux'
 
 function Items() {
   const navigate = useNavigate()
   const {type, search, bool, setSubj} = usePage()
-    useEffect(()=>{
+  const user = useSelector(state=>state.user.user)
+  const [item, setItem] = useState([])
+
+      useEffect(()=>{
         const Querili = query(collection(db,'products'),orderBy('createdAt','asc'))
 
         const snap = onSnapshot(Querili,(snapshot)=>{
@@ -22,7 +25,6 @@ function Items() {
         })
     },[])
 
-    const [item, setItem] = useState([])
     const filteredItem = item.filter((value)=> type === value.data.category )
     let i = 0
     const find = item.filter((value)=>value.data.Description.toLowerCase().includes(search))
@@ -40,6 +42,7 @@ function Items() {
             description:value.data.Description,
             category:value.data.category,
             price:value.data.price,
+            email:value.data.email,
             imgurl:value.data.imgurl,
             id: `${value.data.description}+${value.data.imgurl}+${i++}`
           })
@@ -67,7 +70,9 @@ function Items() {
             description:value.data.Description,
             category:value.data.category,
             price:value.data.price,
-            imgurl:value.data.imgurl
+            email:value.data.email,
+            imgurl:value.data.imgurl,
+            id: `${value.data.description}+${value.data.imgurl}+${i++}`
           })
           navigate('/info')
           }} key={value+index}>

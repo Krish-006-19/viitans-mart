@@ -19,13 +19,16 @@ function Sell() {
   const [imgurl, setImage] = useState('')
   const [price, setPrice] = useState('')
   const [category, setCategory] = useState('')
+  const [email, setEmail] = useState('')
 
   const sellstuff = async (e) => {
     e.preventDefault()
     try {
       await addDoc(collection(db, 'products'), {
         Description: description,
+        displayName:user.displayName,
         category: category,
+        email:email,
         imgurl: imgurl,
         price: Number(price),
         createdAt: new Date(),
@@ -35,7 +38,7 @@ function Sell() {
       setDescription('')
       setImage('')
       setPrice('')
-
+      setEmail('')
       navigate('/')
     } catch (err) {
       console.error("Error adding document: ", err)
@@ -44,9 +47,10 @@ function Sell() {
   }
 
   return (
-    <div className='bg-gradient-to-b from-orange-200 to-red-300 h-screen w-full flex justify-center items-center'>
+<div className='bg-gradient-to-b from-orange-200 to-red-300 min-h-screen w-full flex justify-center items-center px-4 py-5'>
+
       {user?
-      <div className="bg-white px-8 py-4 rounded-xl shadow-lg w-full max-w-md">
+      <div className="bg-white px-8 rounded-xl shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Sell Your Item</h2>
 
         <form id="sellForm" className="space-y-4" onSubmit={sellstuff}>
@@ -96,7 +100,19 @@ function Sell() {
               onChange={(e) => setImage(e.target.value)}
             />
           </div>
-
+          <div>
+            <label className="block font-semibold text-gray-700 mb-1" htmlFor="image">Email</label>
+            <input
+              type="email"
+              id="image"
+              name="image"
+              placeholder="Business Email"
+              required
+              value={email}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
           <div>
             <label className="block font-semibold text-gray-700 mb-1" htmlFor="price">Price</label>
             <input

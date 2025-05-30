@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword, updateProfile  } from "firebase/auth"
 import { auth } from "../firebase/firebase"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
@@ -15,11 +15,18 @@ function Signup() {
     e.preventDefault()
     try{
       const {user} = await createUserWithEmailAndPassword(auth, email, password)
+      await updateProfile(user, {
+      displayName: name,
+    })
+    console.log(user.name)
       if (name && email && password){
       dispatch(login({
-        name:name,
-        email:user.email,
+        displayName: user.displayName,
+        email: user.email
       }))
+      setEmail('')
+      setName('')
+      setPassword('')
     navigate('/')
     }
     }catch(err){

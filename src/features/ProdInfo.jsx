@@ -2,49 +2,113 @@ import { useSelector } from "react-redux"
 import { usePage } from "../ContextAPI/Context"
 import { useNavigate } from "react-router-dom"
 import Signin from './Signin'
+import { useEffect, useState } from "react"
+import { addDoc, collection, onSnapshot, orderBy, query } from "firebase/firestore"
+import { db } from "../firebase/firebase"
 
 function ProdInfo() {
-  const {subj, setCart} = usePage()
-  const user = useSelector(state=>state.user.user)
+  const { subj, setCart } = usePage()
+  const user = useSelector(state => state.user.user)
   const navigate = useNavigate()
+  const [showReview, setShowReview] = useState(false)
+  const [commentText, setCommentText] = useState('')
+  const [comments, setComments] = useState([])
+  const info = async() =>{
+    await addDoc(collection(db,'reviews'),{
+      name:user.displayName,
+      message:commentText,
+      createdAt:new Date()
+    })
+  }
+
+  useEffect(()=>{
+    let querylis = query(collection(db,'reviews'),orderBy('createdAt','asc')) 
+
+    let unsubscribe = onSnapshot(querylis,(snapshot)=>{
+      setComments(snapshot.docs.map((doc)=>(
+        {
+          data:doc.data,
+          id:doc.id
+        }
+      )))
+    })
+    return unsubscribe()
+  },[])
+
   return (
-    <div className=" w-full flex justify-evenly items-center h-screen bg-gradient-to-b from-orange-200 to-red-300 ">
-      {user?
-<div className="flex flex-col lg:flex-row p-6 gap-8 max-w-7xl mx-auto border rounded-2xl bg-white">
-  <div className="flex flex-col lg:flex-row gap-4">
-  
-    <div>
-      <img src={subj.imgurl} className="w-[480px] h-[480px] max-w-md rounded" />
-    </div>
-  </div>
+    <div className="w-full min-h-screen flex justify-center items-center bg-gradient-to-b from-orange-200 to-red-300 py-10">
+      {user ? (
+        <div className={`relative flex flex-col lg:flex-row p-6 gap-8 max-w-6xl ${!showReview?'w-[60%]':'w-full'} mx-auto border rounded-2xl bg-white shadow-lg`}>
 
-  <div className="flex-1 space-y-3">
-    <h1 className="text-2xl font-semibold">
-      {subj.description}
-      <br/>
-    </h1>
+          {/* Left - Product Image */}
+          <div>
+            <img
+              src={subj.imgurl}
+              className="w-[500px] h-[500px] object-cover rounded-xl"
+            />
+          </div>
 
-    <div className="flex items-center space-x-2">
-      <span className="text-orange-500 font-semibold">{(Math.random() * 4 + 1).toFixed(1)}/5</span>
-      <span className="text-gray-600">{Math.floor(Math.random() * (1500 - 200 + 1)) + 200}</span>
-    </div>
+          {/* Middle - Product Info */}
+          <div className="flex-1 space-y-4">
+            <h1 className="text-3xl font-semibold">{subj.description}</h1>
 
-    <p className="text-gray-600 text-sm">{Math.floor(Math.random() * 10) + 1}K+ bought in past month</p>
+            <div className="flex items-center space-x-2">
+              <span className="text-orange-500 font-semibold text-lg">{(Math.random() * 4 + 1).toFixed(1)}/5</span>
+              <span className="text-gray-600 text-sm">{Math.floor(Math.random() * (1500 - 200 + 1)) + 200}</span>
+            </div>
 
-    <div className="text-xl font-bold text-green-600">&#8377;{subj.price}</div>
-    <p className="text-sm text-gray-500">{subj.category}</p>
-    <div className="text-sm text-gray-600">Sold by <strong>Clicktech Retail Pvt Ltd</strong></div>
-    <br/>
-    <br/>
-    <button className="w-full bg-yellow-400 hover:bg-yellow-500 cursor-pointer text-black font-semibold py-2 rounded" 
-    onClick={()=>{
-      setCart((prev)=>[...prev,{...subj}])
-    }}>Add to Cart</button>
-    <button className="w-full bg-yellow-500 hover:bg-yellow-600 cursor-pointer text-black font-semibold py-2 rounded">Ratings</button>
-  </div>
-  </div>:
-<Signin/>
-}
+            <p className="text-gray-600 text-sm">{Math.floor(Math.random() * 10) + 1}K+ bought in past month</p>
+
+            <div className="text-2xl font-bold text-green-600">&#8377;{subj.price}</div>
+            <p className="text-sm text-gray-500">{subj.category}</p>
+            <div className="text-sm text-gray-600">if any problem then email: <strong>{subj.email}</strong></div>
+
+            <div className="space-y-2 pt-4">
+              <button
+                className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 rounded-lg"
+                onClick={() => {
+                  setCart(prev => [...prev, { ...subj }])
+                }}
+              >
+                Add to Cart
+              </button>
+              <button
+                className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-2 rounded-lg"
+                onClick={() => setShowReview(prev => !prev)}
+              >
+                {showReview ? 'Hide Reviews' : 'Reviews'}
+              </button>
+            </div>
+          </div>
+
+          {/* Right - Review Panel */}
+          {showReview && (
+            <div className="w-64 bg-white p-4 rounded-lg flex flex-col justify-between transition-all duration-300">
+              <h2 className="text-center font-semibold text-gray-700 text-md mb-2">Post a Review</h2>
+              <div className="flex">
+                <p>{user.displayName}</p>
+              </div>
+              <textarea
+                className="w-full h-25 p-2 text-sm border rounded resize-none mt-35"
+                placeholder="Share your thoughts..."
+                value={commentText}
+                onChange={(e) => setCommentText(e.target.value)}
+              />
+              <button
+                className="bg-blue-500 hover:bg-blue-600 text-white text-sm py-1 px-4 rounded self-end"
+                 onClick={() => {
+                   info()
+                   setCommentText("")
+                 }}
+              >
+                Submit
+              </button>
+            </div>
+          )}
+        </div>
+      ) : (
+        <Signin />
+      )}
     </div>
   )
 }

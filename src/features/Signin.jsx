@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 import {login} from '../Redux/userSlice'
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import {auth} from '../firebase/firebase'
 
 function Signin() {
@@ -17,8 +17,11 @@ function Signin() {
     console.log(user)
       if (email && password){
     dispatch(login({
-  email:user.email,
+  email: user.email,
+  displayName: user.displayName
   }))
+  setEmail('')
+  setPassword('')
   navigate('/')
       }
     } catch (err) {
@@ -32,7 +35,7 @@ function Signin() {
     <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">Sign In</h2>
     <form>
       <div className="mb-4">
-        <label for="email" className="block text-gray-600 mb-1">Email</label>
+        <label htmlFor="email" className="block text-gray-600 mb-1">Email</label>
         <input
           type="email"
           id="email"
@@ -43,7 +46,7 @@ function Signin() {
         />
       </div>
       <div className="mb-4">
-        <label for="password" className="block text-gray-600 mb-1">Password</label>
+        <label htmlFor="password" className="block text-gray-600 mb-1">Password</label>
         <input
           type="password"
           id="password"
