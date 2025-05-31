@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { usePage } from '../ContextAPI/Context'
+import { useNavigate } from 'react-router-dom'
 
 function Cart() {
   const { cart, setCart } = usePage()
   const [quantities, setQuantities] = useState({})
+  const navigate = useNavigate()
   const crt = cart.filter((value, index) => index === cart.findIndex(t =>{ 
     console.log(t.id) 
     console.log(value.id) 
@@ -61,11 +63,15 @@ function Cart() {
           })}
         </div>
 
-        <div className="border-t pt-4 mt-6 flex justify-between items-start">
-          <div className="text-right">
-            <p className="text-lg font-bold">Subtotal: ₹{sum}</p>
-            <button className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-2 mt-2 rounded">Proceed to Buy</button>
-            <p className="text-sm mt-2 text-green-600">FREE Delivery.</p>
+        <div className="border-t pt-4 mt-6 flex justify-center items-start">
+          <div className="">
+            <p className="text-lg text-center font-bold">Subtotal: ₹{sum}</p>
+            <button className="bg-yellow-400 hover:bg-yellow-500 w-full text-black px-6 py-2 mt-2 rounded"
+            onClick={()=>{
+              setCart([])
+              navigate('/Thanks')
+            }}>Proceed to Buy</button>
+            <p className="text-sm mt-2 text-center text-green-600">FREE Delivery.</p>
           </div>
         </div>
       </div>

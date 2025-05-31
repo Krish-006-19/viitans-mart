@@ -13,11 +13,13 @@ function ProdInfo() {
   const [showReview, setShowReview] = useState(false)
   const [commentText, setCommentText] = useState('')
   const [comments, setComments] = useState([])
+  let i = 0
   const info = async() =>{
     await addDoc(collection(db,'reviews'),{
-      name:user.displayName,
-      message:commentText,
-      createdAt:new Date()
+      name: user.displayName,
+      message: commentText,
+      createdAt:new Date(),
+      id: subj.id
     })
   }
 
@@ -27,12 +29,12 @@ function ProdInfo() {
     let unsubscribe = onSnapshot(querylis,(snapshot)=>{
       setComments(snapshot.docs.map((doc)=>(
         {
-          data:doc.data,
+          data:doc.data(),
           id:doc.id
         }
       )))
     })
-    return unsubscribe()
+    return unsubscribe
   },[])
 
   return (
@@ -40,7 +42,6 @@ function ProdInfo() {
       {user ? (
         <div className={`relative flex flex-col lg:flex-row p-6 gap-8 max-w-6xl ${!showReview?'w-[60%]':'w-full'} mx-auto border rounded-2xl bg-white shadow-lg`}>
 
-          {/* Left - Product Image */}
           <div>
             <img
               src={subj.imgurl}
@@ -48,7 +49,6 @@ function ProdInfo() {
             />
           </div>
 
-          {/* Middle - Product Info */}
           <div className="flex-1 space-y-4">
             <h1 className="text-3xl font-semibold">{subj.description}</h1>
 
@@ -81,13 +81,16 @@ function ProdInfo() {
             </div>
           </div>
 
-          {/* Right - Review Panel */}
           {showReview && (
             <div className="w-64 bg-white p-4 rounded-lg flex flex-col justify-between transition-all duration-300">
               <h2 className="text-center font-semibold text-gray-700 text-md mb-2">Post a Review</h2>
-              <div className="flex">
-                <p>{user.displayName}</p>
-              </div>
+              {comments.map((value) => {
+              return(value.data.id === subj.id?
+                (<div className="mb-2 flex justify-between p-2 border-b" key={value.id}>
+                  <p className="text-sm pl-2 font-semibold">{value.data.name}</p>
+                  <p className="text-sm text-gray-700">{value.data.message}</p>
+                </div>):'')
+              })}
               <textarea
                 className="w-full h-25 p-2 text-sm border rounded resize-none mt-35"
                 placeholder="Share your thoughts..."

@@ -3,13 +3,15 @@ import pdf from '../photos/pdf.jpeg'
 import { useNavigate } from 'react-router-dom'
 import { usePage } from '../ContextAPI/Context'
 import SearchIcon from '@mui/icons-material/Search';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../Redux/userSlice';
 
 function Homepage() {
 const navigate = useNavigate()
 
 const {setType, setSearch, setBool} = usePage()
 const user = useSelector(state=>state.user.user)
+const dispatch = useDispatch()
   return (
     <div className='bg-gradient-to-b from-orange-200 to-red-300 w-full h-screen'>
          <header className="bg-[#2e2e2e] text-white">
@@ -34,9 +36,11 @@ const user = useSelector(state=>state.user.user)
                 </div>
               <div className="flex items-center space-x-4 text-sm">
                 <div className='pr-5 pl-3'>
-                  <span><strong className={`mr-15 hover: cursor-pointer ${user?'hidden':''}`} onClick={
-                    ()=>navigate('/Signin')
-                  }>SignIn</strong></span>
+                  <span><strong className={`mr-15 hover: cursor-pointer`} onClick={
+                    ()=>{
+                      user?dispatch(logout()):navigate('/Signin')
+                    }
+                  }>{user?'SignOut':'SignIn'}</strong></span>
               <span ><strong className='mr-15 hover:cursor-pointer' onClick={()=>navigate('/Sell')}>Sell</strong></span>
 
                 </div>
