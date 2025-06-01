@@ -42,7 +42,7 @@ export const PageProvider = ({ children }) => {
   const [type, setType] = useState(() => localStorage.getItem("type") || "");
   const [search, setSearch] = useState(() => localStorage.getItem("search") || "");
   const [bool, setBool] = useState(() => JSON.parse(localStorage.getItem("bool")) || false);
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('crt'))||[])
   const [subj, setSubj] = useState(null);
 
   // persist changes
@@ -50,7 +50,8 @@ export const PageProvider = ({ children }) => {
     localStorage.setItem("type", type);
     localStorage.setItem("search", search);
     localStorage.setItem("bool", JSON.stringify(bool));
-  }, [type, search, bool]);
+    localStorage.setItem('crt',JSON.stringify(cart))
+  }, [type, search, bool, cart]);
 
   return (
     <PageContext.Provider value={{ type, setType, search, setSearch, bool, setBool, subj, setSubj, cart, setCart}}>
