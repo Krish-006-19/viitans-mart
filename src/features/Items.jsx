@@ -44,7 +44,7 @@ function Items() {
             email:value.data.email,
             imgurl:value.data.imgurl,
             id: `${value.data.description}+${value.data.imgurl}+${i++}`,
-            currUser:user.id || ''
+            currUser:user?.id || ''
           })
           navigate('/info')
           }} key={value+index}>
@@ -74,7 +74,7 @@ function Items() {
             email:value.data.email,
             imgurl:value.data.imgurl,
             id: `${value.data.description}+${value.data.imgurl}+${i++}`,
-            currUser:user.id || ''
+            currUser:user?.id || ''
           })
           navigate('/info')
           }} key={value+index}>
