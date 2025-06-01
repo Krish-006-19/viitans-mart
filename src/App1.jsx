@@ -7,8 +7,37 @@ import Cart from './features/Cart'
 import Items from './features/Items'
 import ProdInfo from './features/ProdInfo'
 import End from './features/End'
+import { useEffect } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './firebase/firebase';
+import { useDispatch } from 'react-redux';
+import { login, logout } from './Redux/userSlice';
+
 
 function App1() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log("✅ Auth check setup");
+
+    const unsubscribe = onAuthStateChanged(auth, async(user) => {
+      console.log("👤 Auth changed:", user)
+      if (user) {
+        dispatch(login({
+          displayName: user.displayName,
+          email: user.email,
+        }));
+      } else {
+        dispatch(logout());
+      }
+    });
+
+    return () => unsubscribe();
+  }, [dispatch]);
+
+
+
   return (
     <BrowserRouter>
     <Routes>

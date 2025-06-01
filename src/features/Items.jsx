@@ -65,7 +65,7 @@ function Items() {
       ))
       :
         find && find.map((value,index)=>(
-          <div className="bg-white rounded-lg transform shadow hover:shadow-lg hover:scale-105 transition duration-300 border cursor-pointer p-4" onClick={()=>{
+        <div className="bg-white rounded-lg transform shadow hover:shadow-lg hover:scale-105 transition duration-300 border cursor-pointer p-4" onClick={()=>{
           setSubj({
             description:value.data.Description,
             category:value.data.category,
@@ -79,17 +79,17 @@ function Items() {
         <img src={value.data.imgurl} className="w-full h-48 object-contain mb-4"/>
         <h2 className="font-semibold text-black text-lg">{value.data.Description}</h2>
         <p className="text-sm text-gray-500">{value.data.category}</p>
-        {/* <div className="flex items-center my-2">
-          <div className="text-yellow-500 text-sm mr-1">4/5</div>
-          <span className="text-sm text-gray-600">(1,914)</span>
-        </div> */}
+        <div className="flex items-center my-2">
+          <div className="text-yellow-500 text-sm mr-3">{(Math.random() * 4 + 1).toFixed(1)}/5</div>
+          <span className="text-sm text-gray-600">{Math.floor(Math.random() * (1500 - 200 + 1)) + 200}</span>
+        </div>
         <div className="mb-2">
           <span className="text-green-600 font-bold">&#8377;{value.data.price}</span>
         </div>
         <button className="mt-2 w-full bg-yellow-400 hover:bg-yellow-300 text-black font-semibold py-2 rounded">
-          Add to cart
+          Info
         </button>
-        </div>
+      </div>
         ))
       
     }

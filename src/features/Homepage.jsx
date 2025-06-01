@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { usePage } from '../ContextAPI/Context'
 import SearchIcon from '@mui/icons-material/Search';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../Redux/userSlice';
+import { signOut } from 'firebase/auth';
+import { auth } from '../firebase/firebase';
 
 function Homepage() {
 const navigate = useNavigate()
@@ -37,8 +38,8 @@ const dispatch = useDispatch()
               <div className="flex items-center space-x-4 text-sm">
                 <div className='pr-5 pl-3'>
                   <span><strong className={`mr-15 hover: cursor-pointer`} onClick={
-                    ()=>{
-                      user?dispatch(logout()):navigate('/Signin')
+                    async()=>{
+                      user?await signOut(auth):navigate('/Signin')
                     }
                   }>{user?'SignOut':'SignIn'}</strong></span>
               <span ><strong className='mr-15 hover:cursor-pointer' onClick={()=>navigate('/Sell')}>Sell</strong></span>

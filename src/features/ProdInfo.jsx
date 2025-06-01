@@ -82,32 +82,38 @@ function ProdInfo() {
           </div>
 
           {showReview && (
-            <div className="w-64 bg-white p-4 rounded-lg flex flex-col justify-between transition-all duration-300">
-              <h2 className="text-center font-semibold text-gray-700 text-md mb-2">Post a Review</h2>
-              {comments.map((value) => {
-              return(value.data.id === subj.id?
-                (<div className="mb-2 flex justify-between p-2 border-b" key={value.id}>
-                  <p className="text-sm pl-2 font-semibold">{value.data.name}</p>
-                  <p className="text-sm text-gray-700">{value.data.message}</p>
-                </div>):'')
-              })}
-              <textarea
-                className="w-full h-25 p-2 text-sm border rounded resize-none mt-35"
-                placeholder="Share your thoughts..."
-                value={commentText}
-                onChange={(e) => setCommentText(e.target.value)}
-              />
-              <button
-                className="bg-blue-500 hover:bg-blue-600 text-white text-sm py-1 px-4 rounded self-end"
-                 onClick={() => {
-                   info()
-                   setCommentText("")
-                 }}
-              >
-                Submit
-              </button>
-            </div>
-          )}
+  <div className="w-64 bg-white p-4 rounded-lg flex flex-col justify-between transition-all duration-300">
+    <h2 className="text-center font-semibold text-gray-700 text-md mb-2">Post a Review</h2>
+
+    {/* SCROLLABLE COMMENT SECTION */}
+    <div className="flex-1 overflow-y-auto max-h-64 pr-1 mb-2 space-y-2">
+      {comments.map((value) =>
+        value.data.id === subj.id ? (
+          <div className="mb-2 flex justify-between p-2 border-b" key={value.id}>
+            <p className="text-sm pl-2 font-semibold">{value.data.name}</p>
+            <p className="text-sm text-gray-700">{value.data.message}</p>
+          </div>
+        ) : null
+      )}
+    </div>
+
+    <textarea
+      className="w-full h-24 p-2 text-sm border rounded resize-none"
+      placeholder="Share your thoughts..."
+      value={commentText}
+      onChange={(e) => setCommentText(e.target.value)}
+    />
+    <button
+      className="bg-blue-500 hover:bg-blue-600 text-white text-sm py-1 px-4 rounded self-end mt-2"
+      onClick={() => {
+        info()
+        setCommentText("")
+      }}
+    >
+      Submit
+    </button>
+  </div>
+)}
         </div>
       ) : (
         <Signin />
