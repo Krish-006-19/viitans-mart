@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { usePage } from '../ContextAPI/Context'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 function Cart() {
   const { cart, setCart } = usePage()
   const [quantities, setQuantities] = useState({})
   const navigate = useNavigate()
   const crt = (cart||[]).filter((value, index) => index === cart.findIndex(t =>t.id === value.id))
+  const user = useSelector(state=>state.user.user)
 
   let sum = 0
 
@@ -16,7 +18,7 @@ function Cart() {
         <h1 className="text-2xl font-bold mb-6">Shopping Cart</h1>
 
 <div className="flex flex-col gap-4 max-h-[60vh] overflow-y-auto">
-  {crt?.map((value) => {
+  {user && crt?.map((value) => {
     const quantity = quantities[value.id] || 1
     sum += quantity * Number(value.price)
 
