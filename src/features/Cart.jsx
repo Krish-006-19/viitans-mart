@@ -76,15 +76,3 @@ function Cart() {
 }
 
 export default Cart
-
-        // <div className="border-t pt-4 mt-6 flex justify-center items-start">
-        //   <div className="">
-        //     <p className="text-lg text-center font-bold">Subtotal: ₹{sum}</p>
-        //     <button className="bg-yellow-400 hover:bg-yellow-500 w-full text-black px-6 py-2 mt-2 rounded"
-        //     onClick={()=>{
-        //       setCart([])
-        //       navigate('/Thanks')
-        //     }}>Proceed to Buy</button>
-        //     <p className="text-sm mt-2 text-center text-green-600">FREE Delivery.</p>
-        //   </div>
-        // </div>
