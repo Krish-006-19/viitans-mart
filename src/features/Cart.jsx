@@ -6,7 +6,7 @@ function Cart() {
   const { cart, setCart } = usePage()
   const [quantities, setQuantities] = useState({})
   const navigate = useNavigate()
-  const crt = cart.filter((value, index) => index === cart.findIndex(t =>t.id === value.id))
+  const crt = (cart||[]).filter((value, index) => index === cart.findIndex(t =>t.id === value.id))
 
   let sum = 0
 
