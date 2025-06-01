@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 function Cart() {
-  const { cart, setCart } = usePage()
+  const { cart, setCart, subj } = usePage()
   const [quantities, setQuantities] = useState({})
   const navigate = useNavigate()
   const crt = (cart||[]).filter((value, index) => index === cart.findIndex(t =>t.id === value.id))
@@ -21,7 +21,7 @@ function Cart() {
   {user && crt?.map((value) => {
     const quantity = quantities[value.id] || 1
     sum += quantity * Number(value.price)
-
+    if(value.currUser == user.id){
     return (
       <div className="flex items-start gap-4 border p-4 rounded" key={value.id}>
         <img src={value.imgurl} className='w-[160px] h-[160px]' />
@@ -57,7 +57,7 @@ function Cart() {
         </div>
         <div className="font-bold text-lg text-right">₹{Number(value.price)}</div>
       </div>
-    );
+    )}
   })}
 </div>
          <div className="border-t pt-4 mt-6 flex justify-center items-start">

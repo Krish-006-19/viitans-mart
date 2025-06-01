@@ -17,7 +17,8 @@ function Signin() {
       if (email && password){
     dispatch(login({
   email: user.email,
-  displayName: user.displayName
+  displayName: user.displayName,
+  id:user.email+user.displayName
   }))
   setEmail('')
   setPassword('')

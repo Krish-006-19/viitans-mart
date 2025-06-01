@@ -3,12 +3,13 @@ import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'
 import { db } from '../firebase/firebase'
 import { useNavigate } from 'react-router-dom'
 import { usePage } from '../ContextAPI/Context'
+import { useSelector } from 'react-redux'
 
 function Items() {
   const navigate = useNavigate()
   const {type, search, bool, setSubj} = usePage()
   const [item, setItem] = useState([])
-
+  const user = useSelector(state=>state.user.user)
       useEffect(()=>{
         const Querili = query(collection(db,'products'),orderBy('createdAt','asc'))
 
@@ -42,7 +43,8 @@ function Items() {
             price:value.data.price,
             email:value.data.email,
             imgurl:value.data.imgurl,
-            id: `${value.data.description}+${value.data.imgurl}+${i++}`
+            id: `${value.data.description}+${value.data.imgurl}+${i++}`,
+            currUser:user.id
           })
           navigate('/info')
           }} key={value+index}>
@@ -71,7 +73,8 @@ function Items() {
             price:value.data.price,
             email:value.data.email,
             imgurl:value.data.imgurl,
-            id: `${value.data.description}+${value.data.imgurl}+${i++}`
+            id: `${value.data.description}+${value.data.imgurl}+${i++}`,
+            currUser:user.id
           })
           navigate('/info')
           }} key={value+index}>

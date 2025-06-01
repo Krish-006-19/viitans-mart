@@ -22,7 +22,8 @@ function Signup() {
       if (name && email && password){
       dispatch(login({
         displayName: user.displayName,
-        email: user.email
+        email: user.email,
+        id:user.email+user.displayName
       }))
       setEmail('')
       setName('')
