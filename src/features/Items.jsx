@@ -93,10 +93,6 @@ function Items() {
         </button>
       </div>
       ))
-
-
-
-      
     }
 
     </div>

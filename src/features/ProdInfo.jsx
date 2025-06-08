@@ -39,7 +39,7 @@ function ProdInfo() {
 
   return (
     <div className="w-full min-h-screen flex justify-center items-center bg-gradient-to-b from-orange-200 to-red-300 py-10">
-      {user ? (
+      {user && subj ? (
         <div className={`relative flex flex-col lg:flex-row p-6 gap-8 max-w-6xl ${!showReview?'w-[60%]':'w-full'} mx-auto border rounded-2xl bg-white shadow-lg`}>
 
           <div>
