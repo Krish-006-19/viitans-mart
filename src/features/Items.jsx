@@ -43,10 +43,11 @@ function Items() {
             price:value.data.price,
             email:value.data.email,
             imgurl:value.data.imgurl,
-            id: `${value.data.description}+${value.data.imgurl}+${i++}`,
+            id: `${value.data.Description}+${value.data.imgurl}+${i++}`,
             currUser:user?.id || ''
           })
           navigate('/info')
+          console.log(user.id)
           }} key={value+index}>
         <img src={value.data.imgurl} className="w-full h-48 object-contain mb-4"/>
         <h2 className="font-semibold text-black text-lg">{value.data.Description}</h2>
@@ -73,10 +74,11 @@ function Items() {
             price:value.data.price,
             email:value.data.email,
             imgurl:value.data.imgurl,
-            id: `${value.data.description}+${value.data.imgurl}+${i++}`,
+            id: `${value.data.Description}+${value.data.imgurl}+${i++}`,
             currUser:user?.id || ''
           })
           navigate('/info')
+          console.log(user.id)
           }} key={value+index}>
         <img src={value.data.imgurl} className="w-full h-48 object-contain mb-4"/>
         <h2 className="font-semibold text-black text-lg">{value.data.Description}</h2>

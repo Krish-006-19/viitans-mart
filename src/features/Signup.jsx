@@ -17,13 +17,13 @@ function Signup() {
       const {user} = await createUserWithEmailAndPassword(auth, email, password)
       await updateProfile(user, {
       displayName: name,
+      id:name+email+password
     })
-    console.log(user.name)
       if (name && email && password){
       dispatch(login({
         displayName: user.displayName,
         email: user.email,
-        id:user.email+user.displayName
+        id: user.uid
       }))
       setEmail('')
       setName('')

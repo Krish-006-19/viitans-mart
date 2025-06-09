@@ -18,7 +18,7 @@ function Signin() {
     dispatch(login({
   email: user.email,
   displayName: user.displayName,
-  id:user.email+user.displayName
+  id:user.uid
   }))
   setEmail('')
   setPassword('')

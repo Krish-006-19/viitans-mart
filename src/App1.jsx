@@ -19,10 +19,8 @@ function App1() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("✅ Auth check setup");
 
     const unsubscribe = onAuthStateChanged(auth, async(user) => {
-      console.log("👤 Auth changed:", user)
       if (user) {
         dispatch(login({
           displayName: user.displayName,

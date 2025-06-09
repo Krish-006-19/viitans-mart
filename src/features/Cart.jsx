@@ -9,9 +9,9 @@ function Cart() {
   const navigate = useNavigate()
   const crt = (cart||[]).filter((value, index) => index === cart.findIndex(t =>t.id === value.id))
   const user = useSelector(state=>state.user.user)
-
+  
   let sum = 0
-
+if(crt){
   return (
     <div className='w-full flex justify-evenly items-center h-screen bg-gradient-to-b from-orange-200 to-red-300'>
       <div className="max-w-7xl mx-auto bg-white p-6 rounded shadow">
@@ -20,6 +20,9 @@ function Cart() {
 <div className="flex flex-col gap-4 max-h-[60vh] overflow-y-auto">
   {user && crt?.map((value) => {
     const quantity = quantities[value.id] || 1
+    console.log(value.currUser)
+    console.log(user.id)
+
     sum += quantity * Number(value.price)
     if(value.currUser == user.id){
     return (
@@ -62,7 +65,7 @@ function Cart() {
 </div>
          <div className="border-t pt-4 mt-6 flex justify-center items-start">
          <div className="">
-         <p className="text-lg text-center font-bold">Subtotal: ₹{sum}</p>
+         <p className="text-lg text-center font-bold">{crt?`Subtotal: ₹${sum}`:''}</p>
            <button className={`${cart[0]?'':'hidden'} bg-yellow-400 hover:bg-yellow-500 w-full text-black px-6 py-2 mt-2 rounded`}
            onClick={()=>{
           setCart([])
@@ -74,7 +77,7 @@ function Cart() {
 
       </div>
     </div>
-  );
+  );}
 }
 
 export default Cart
