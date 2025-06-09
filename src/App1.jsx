@@ -25,6 +25,7 @@ function App1() {
         dispatch(login({
           displayName: user.displayName,
           email: user.email,
+          id:user.uid
         }));
       } else {
         dispatch(logout());
