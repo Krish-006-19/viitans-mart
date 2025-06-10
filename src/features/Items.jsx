@@ -26,7 +26,7 @@ function Items() {
 
     const filteredItem = item.filter((value)=> type === value.data.category )
     let i = 0
-    const find = item.filter((value)=>value.data.Description.toLowerCase().includes(search))
+    const find = item.filter((value)=>value.data.Description.toLowerCase().includes(search.toLowerCase()))
 
   return (
     <div className=" w-full h-screen bg-gradient-to-b from-orange-200 to-red-300 ">
