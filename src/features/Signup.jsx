@@ -37,7 +37,7 @@ function Signup() {
   return (
         <div className="w-full h-screen flex items-center justify-center bg-gradient-to-b from-orange-200 to-red-300">
           <div className="bg-white border p-8 rounded-lg shadow-md w-full max-w-sm">
-    <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">Sign In</h2>
+    <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">Sign Up</h2>
     <form>
       <div className="mb-4">
         <label htmlFor="name" className="block text-gray-600 mb-1">Name</label>
@@ -77,7 +77,7 @@ function Signup() {
         className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 cursor-pointer transition duration-200"
         onClick={signup}
       >
-        Sign In
+        Sign Up
       </button>
     </form>
   </div>
