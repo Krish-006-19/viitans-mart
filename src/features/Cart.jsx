@@ -11,7 +11,48 @@ function Cart() {
   const crt = (cart||[]).filter(val=>val.currUser === user?.id).filter((value, index, self) => index === self.findIndex(val =>val.id === value.id))
 
   let sum = 0
+
+
+   const loadScript = (src) => {
+    return new Promise((resolve) => {
+      const script = document.createElement('script');
+      script.src = src;
+      script.onload = () => resolve(true);
+      script.onerror = () => resolve(false);
+      document.body.appendChild(script);
+    });
+  };
+
+  const displayRazorpay = async () => {
+    const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js');
+
+    if (!res) {
+      alert('Razorpay SDK failed to load. Are you online?');
+      return;
+    }
+
+    const options = {
+      key: "rzp_test_1DP5mmOlF5G5ag", 
+      currency: 'INR',
+      amount: Number(sum)*100, // amount in paise = ₹500
+      name: 'Transaction',
+      description: 'Payment',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjHzYUqhkmidrXAPILvg2QYzARDoCKToR7gA&s',
+      handler:()=>navigate('/Thanks'),
+      prefill: {
+        name: 'Test User',
+        email: 'test@example.com',
+        contact: '9999999999',
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    await paymentObject.open()
+  };
   
+
+
+
   return (
     <div className='w-full flex justify-evenly items-center h-screen bg-gradient-to-b from-orange-200 to-red-300'>
       <div className="max-w-7xl mx-auto bg-white p-6 rounded shadow">
@@ -67,9 +108,9 @@ function Cart() {
          <div className="">
          <p className="text-lg text-center font-bold">{crt.length?`Subtotal: ₹${sum}`:''}</p>
            <button className={`${crt.length?'':'hidden'} bg-yellow-400 hover:bg-yellow-500 w-full text-black px-6 py-2 mt-2 rounded`}
-           onClick={()=>{
-          setCart([])
-          navigate('/Thanks')
+           onClick={async()=>{
+          await displayRazorpay()
+           setCart([])
         }}>Proceed to Buy</button>
          <p className="text-sm mt-2 text-center text-green-600">FREE Delivery.</p>
         </div>
