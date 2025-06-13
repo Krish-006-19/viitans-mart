@@ -41,8 +41,8 @@ function Cart() {
       handler:()=>navigate('/Thanks'),
       prefill: {
         name: 'Test User',
-        email: 'test@example.com',
-        contact: '9999999999',
+        email: subj.email,
+        contact:subj.number,
       },
     };
 

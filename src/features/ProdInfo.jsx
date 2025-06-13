@@ -61,7 +61,7 @@ function ProdInfo() {
 
             <div className="text-2xl font-bold text-green-600">&#8377;{subj.price}</div>
             <p className="text-sm text-gray-500">{subj.category}</p>
-            <div className="text-sm text-gray-600">if any problem then email: <strong>{subj.email}</strong></div>
+            <div className="text-sm text-gray-600">if any problem then call on : <strong>{subj.number}</strong></div>
 
             <div className="space-y-2 pt-4">
               <button

@@ -20,6 +20,8 @@ function Sell() {
   const [price, setPrice] = useState('')
   const [category, setCategory] = useState('')
   const [email, setEmail] = useState('')
+  const [num, setNum] = useState(null)
+
 
   const sellstuff = async (e) => {
     e.preventDefault()
@@ -29,6 +31,7 @@ function Sell() {
         displayName:user.displayName,
         category: category,
         email:email,
+        number:Number(num),
         imgurl: imgurl,
         price: Number(price),
         createdAt: new Date(),
@@ -38,7 +41,7 @@ function Sell() {
       setDescription('')
       setImage('')
       setPrice('')
-      setEmail('')
+      setNum('')
       navigate('/')
     } catch (err) {
       console.error("Error adding document: ", err)
@@ -111,6 +114,19 @@ function Sell() {
               value={email}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
               onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="block font-semibold text-gray-700 mb-1" htmlFor="image">Mob. Num</label>
+            <input
+              type="number"
+              id="image"
+              name="image"
+              placeholder="Business Mob. Number"
+              required
+              value={num}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+              onChange={(e) => setNum(e.target.value)}
             />
           </div>
           <div>

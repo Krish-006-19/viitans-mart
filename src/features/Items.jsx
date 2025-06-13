@@ -29,7 +29,7 @@ function Items() {
     const find = item.filter((value)=>value.data.Description.toLowerCase().includes(search.toLowerCase()))
 
   return (
-    <div className=" w-full h-screen bg-gradient-to-b from-orange-200 to-red-300 ">
+    <div className=" w-full min-h-screen bg-gradient-to-b from-orange-200 to-red-300 ">
   <div className="max-w-7xl p-2 mx-auto">
     
 
@@ -42,6 +42,7 @@ function Items() {
             category:value.data.category,
             price:value.data.price,
             email:value.data.email,
+            number:value.data.number,
             imgurl:value.data.imgurl,
             id: `${value.data.Description}+${value.data.imgurl}+${i++}`,
             currUser:user?.id || ''
@@ -72,6 +73,7 @@ function Items() {
             description:value.data.Description,
             category:value.data.category,
             price:value.data.price,
+            number:value.data.number,
             email:value.data.email,
             imgurl:value.data.imgurl,
             id: `${value.data.Description}+${value.data.imgurl}+${i++}`,
