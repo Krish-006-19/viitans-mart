@@ -1,12 +1,18 @@
-# React + Vite
+# VITIAN's MART 🛍️🎓
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple yet effective resource-sharing platform designed specifically for students! With **VITIAN's MART**, users can sell their academic or personal resources (books, gadgets, notes, etc.) to fellow students within their college. It's a smart, campus-focused marketplace built to encourage sustainability and peer-to-peer support.
 
-Currently, two official plugins are available:
+## 🔑 Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🛒 **Sell Resources**: Users can list items they want to sell to fellow students.
+- 🔍 **Browse Listings**: Everyone can view all available resources across the platform.
+- 💬 **Comment on Products**: Ask questions or share feedback directly on product pages.
+- 💵 **Buy from Peers**: Contact sellers to buy what you need — student-to-student commerce made easy.
+- 🎓 **Campus-Only Access**: Tailored for intra-college use — build trust within your own student network.
 
-## Expanding the ESLint configuration
+## 🚀 Technologies Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend**: REACTJs, Tailwindcss, Redux, Context API
+- **Database**: FIRESTORE
+- **Authentication**: FIREBASE Auth
+- **Hosting**: Vercel

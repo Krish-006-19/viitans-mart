@@ -2,12 +2,21 @@ import { useNavigate } from "react-router-dom"
 
 function End() {
     const navigate = useNavigate()
+
+
+    
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     const today = new Date()
     const tomorrow = days[(today.getDay() + 1) % 7]
+
+
+
     const numbers = [1, 2, 3, 4, 5, 11, 12]
     const randomNumber = numbers[Math.floor(Math.random() * numbers.length)]
     const random = Math.floor(Math.random() * 61)
+
+
+
   return (
     <div className="w-full flex justify-evenly items-center h-screen bg-gradient-to-b from-orange-200 to-red-300">
           <div className="bg-white rounded-2xl shadow-lg p-8 max-w-md text-center space-y-6">
