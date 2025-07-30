@@ -20,3 +20,15 @@ A simple yet effective resource-sharing platform designed specifically for stude
 - **Database**: FIRESTORE
 - **Authentication**: FIREBASE Auth
 - **Hosting**: Vercel
+
+
+
+## 🧩 Demo & Preview
+Live demo is available on this website
+https://vitians-mart.netlify.app/
+
+<img width="1891" height="867" alt="image" src="https://github.com/user-attachments/assets/451fba39-e70c-4e1c-8ee9-dc5e7c4f26ba" />
+
+
+
+---
