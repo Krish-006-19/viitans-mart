@@ -19,7 +19,7 @@ A simple yet effective resource-sharing platform designed specifically for stude
 - **Frontend**: REACTJs, Tailwindcss, Redux, Context API
 - **Database**: FIRESTORE
 - **Authentication**: FIREBASE Auth
-- **Hosting**: Vercel
+- **Hosting**: Netlify
 
 
 
