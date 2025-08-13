@@ -3,13 +3,13 @@ import { getAuth, GoogleAuthProvider, setPersistence, browserLocalPersistence } 
 import { getFirestore } from "firebase/firestore"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCAexMvTtV_xVo3slfqYX27rUUiEUvVwL8",
-  authDomain: "e-commerce-4b10d.firebaseapp.com",
-  projectId: "e-commerce-4b10d",
-  storageBucket: "e-commerce-4b10d.appspot.com",
-  messagingSenderId: "718583563266",
-  appId: "1:718583563266:web:e8a3d8e8374c0d8142131b"
-}
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID
+};
 
 const app = initializeApp(firebaseConfig)
 
